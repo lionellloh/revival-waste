@@ -30,16 +30,17 @@ roundedGradientButton(text, screenUnitWidth, screenUnitHeight) {
     child: Container(
     width: 60 * screenUnitWidth,
     height: 6 * screenUnitHeight,
-    decoration: BoxDecoration(
+    decoration: 
+    BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
           colors: <Color>[Color(0xFF547980), Color(0xFF45ADA8)],
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[500],
-            offset: Offset(0.0, 1.5),
-            blurRadius: 1,
+            color: Colors.grey[600],
+            offset: Offset(5, 7),
+            blurRadius: 5,
           ),
         ]),
     child: new Center(
