@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -13,18 +14,18 @@ class WelcomeScreen extends StatelessWidget {
         Container(
           height: screenUnitHeight * 65,
         ),
-        roundedGradientButton("Sign Up", screenUnitWidth, screenUnitHeight),
+        roundedGradientButton("Sign Up", SignupScreen(), context, screenUnitWidth, screenUnitHeight),
         Container(
           height: screenUnitHeight * 1,
         ),
-        normalButton("Login", screenUnitWidth, screenUnitHeight),
+        normalButton("Login", SignupScreen(), context, screenUnitWidth, screenUnitHeight),
         
       ],
     ));
   }
 }
 
-roundedGradientButton(text, screenUnitWidth, screenUnitHeight) {
+roundedGradientButton(text, screenInstance, context, screenUnitWidth, screenUnitHeight) {
   return new GestureDetector(
     onTap: ()=>print("tapped"),
     child: Container(
@@ -51,9 +52,12 @@ roundedGradientButton(text, screenUnitWidth, screenUnitHeight) {
                 color: Colors.white))),
   )); }
 
-  normalButton(text, screenUnitWidth, screenUnitHeight) {
+  normalButton(text, screenInstance, context, screenUnitWidth, screenUnitHeight) {
   return new GestureDetector(
-    onTap: ()=>print("tapped"),
+    onTap: ()=>Navigator.push(
+              context,
+              new MaterialPageRoute(builder: (context) => screenInstance),
+            ),
     child: Container(
     width: 40 * screenUnitWidth,
     height: 6 * screenUnitHeight,
