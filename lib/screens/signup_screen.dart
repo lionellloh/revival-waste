@@ -40,7 +40,7 @@ class SignupScreenState extends State<SignupScreen> {
           Align(
             alignment: Alignment.topLeft,
             child: backButton(context)),
-          Container(margin: EdgeInsets.only(top: screenUnitHeight * 2)),
+          Container(margin: EdgeInsets.only(top: screenUnitHeight * 1)),
           Align(
             alignment: Alignment.topLeft,
             child: textWidget("Signup", 30.0, Colors.black),),
@@ -50,7 +50,22 @@ class SignupScreenState extends State<SignupScreen> {
           passwordField(),
           confirmPasswordField(),
           Container(margin: EdgeInsets.only(top: screenUnitHeight * 5)),
-          roundedGradientButtonCallback("Sign Up", ()=> print("fk"), context, screenUnitWidth, screenUnitHeight),
+          _isLoading ? 
+                    CircularProgressIndicator() : 
+                    roundedGradientButtonCallback("Sign Up", signUpCallback, context, screenUnitWidth, screenUnitHeight),
+          Container(margin: EdgeInsets.only(top: screenUnitHeight * 4)),
+          Align(
+            alignment: Alignment.center,
+            child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              textWidget("Already have an account?", 13.0, Colors.grey),
+              Container(margin: EdgeInsets.only(right: screenUnitWidth * 1)),
+              textWidget('Sign in', 13.0, Colors.black)
+            ]
+          ),
+          )
           
           // Container(margin: EdgeInsets.only(top: MediaQuery.of(context).size.width/10 )),
           // _isLoading ? CircularProgressIndicator() : submitButton(),
@@ -64,6 +79,13 @@ class SignupScreenState extends State<SignupScreen> {
     )
     );
     
+  }
+
+  void signUpCallback(){
+    setState(() {
+          _isLoading = true;
+        });
+    print("signing up");
   }
   Widget backButton(context){
     return IconButton(
@@ -157,7 +179,7 @@ class SignupScreenState extends State<SignupScreen> {
     height: 5 * screenUnitHeight,
     decoration: 
     BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         gradient: LinearGradient(
           colors: <Color>[Color(0xFF547980), Color(0xFF45ADA8)],
         ),
